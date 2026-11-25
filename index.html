@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Irrigation - ખેતી સહાયક</title>
+<style>
+  :root {
+    --primary: #1b5e20;
+    --primary-light: #2e7d32;
+    --accent: #c62828;
+    --bg: #f4f7f4;
+    --card: #ffffff;
+    --text: #1c241e;
+    --muted: #5c6b60;
+    --border: #dce5de;
+    --alert-bg: #ffebee;
+    --alert-border: #e53935;
+  }
+  * { box-sizing: border-box; font-family: 'Noto Sans Gujarati', system-ui, -apple-system, sans-serif; }
+  body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 84px; }
+  header {
+    background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+    color: #fff;
+    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .brand-box { display: flex; align-items: center; gap: 10px; }
+  .logo-badge {
+    width: 54px; height: 54px; border-radius: 12px; background: #ffffff;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid #c8e6c9; flex-shrink: 0; overflow: hidden; padding: 2px;
+  }
+  .logo-badge svg { width: 100%; height: 100%; display: block; }
+  .brand-title { font-size: 17px; font-weight: 700; margin: 0; }
+  .brand-sub { font-size: 11px; opacity: 0.9; margin: 2px 0 0; }
+  .hdr-actions { display: flex; gap: 6px; }
+  .icon-btn {
+    background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.28);
+    color: #fff; border-radius: 8px; padding: 7px 10px; font-size: 12px;
+    cursor: pointer; font-weight: 600;
+  }
+  .container { max-width: 780px; margin: 0 auto; padding: 14px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .between { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .broadcast-banner {
+    background: #e8f5e9; border: 1.5px solid #43a047; border-radius: 12px;
+    padding: 12px 14px; margin-bottom: 12px;
+  }
+  .broadcast-title { font-weight: 700; color: #1b5e20; font-size: 14px; margin-bottom: 4px; }
+  .weather-card {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f1f8e9 100%);
+    border: 1px solid #bbdefb; border-radius: 14px; padding: 14px; margin-bottom: 12px;
+  }
+  .weather-alert {
+    background: var(--alert-bg); border: 1.5px solid var(--alert-border);
+    border-radius: 12px; padding: 12px; margin-top: 10px;
+  }
+  .weather-alert-title { font-weight: 700; color: #b71c1c; font-size: 14px; margin-bottom: 4px; }
+  .field-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 10px; }
+  .field-chip {
+    padding: 8px 14px; border-radius: 20px; border: 1px solid var(--border);
+    background: #fff; color: var(--text); font-size: 13px; font-weight: 600;
+    cursor: pointer; white-space: nowrap;
+  }
+  .field-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 10px 0; }
+  .stat-box {
+    background: #f8fbf8; border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px; text-align: center;
+  }
+  .stat-val { font-size: 20px; font-weight: 800; color: var(--primary); }
+  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+  input, select, textarea {
+    width: 100%; padding: 9px 11px; border: 1px solid #c5d1c8; border-radius: 9px;
+    font-size: 14px; background: #fff; color: var(--text); margin-bottom: 10px;
+  }
+  textarea { min-height: 70px; resize: vertical; }
+  .btn {
+    border: none; border-radius: 9px; padding: 9px 14px; font-size: 13px;
+    font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-wa { background: #128c7e; color: #fff; }
+  .btn-outline { background: #fff; color: var(--primary); border: 1px solid var(--primary); }
+  .btn-sm { padding: 6px 10px; font-size: 12px; border-radius: 7px; }
+  .btn-danger { background: #d32f2f; color: #fff; }
+  .schedule-item {
+    border: 1px solid var(--border); border-radius: 11px; padding: 11px;
+    margin-bottom: 8px; background: #fff;
+  }
+  .schedule-item.done { background: #f3faf4; border-color: #a5d6a7; }
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;
+  }
+  .badge-fert { background: #e8f5e9; color: #1b5e20; }
+  .badge-spray { background: #fff3e0; color: #e65100; }
+  .badge-done { background: #c8e6c9; color: #1b5e20; }
+  .sprayed-note {
+    margin-top: 8px; padding: 8px 10px; border-radius: 8px;
+    background: #eef7f0; font-size: 12px; color: #1b5e20; font-weight: 600;
+  }
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.52); display: none;
+    align-items: center; justify-content: center; padding: 14px; z-index: 100;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal-box {
+    background: #fff; border-radius: 16px; width: 100%; max-width: 540px;
+    max-height: 90vh; overflow-y: auto; padding: 18px; box-shadow: 0 12px 32px rgba(0,0,0,0.22);
+  }
+  .modal-title { font-size: 17px; font-weight: 800; margin: 0 0 12px; color: var(--primary); }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { border: 1px solid var(--border); padding: 7px 8px; text-align: left; }
+  th { background: #eef4ef; font-weight: 700; }
+  .bottom-nav {
+    position: fixed; bottom: 0; left: 0; right: 0; background: #fff;
+    border-top: 1px solid var(--border); display: flex; justify-content: space-around;
+    padding: 8px 6px; z-index: 60;
+  }
+  .nav-btn {
+    background: none; border: none; font-size: 12px; font-weight: 700;
+    color: var(--muted); cursor: pointer; padding: 4px 8px;
+  }
+  .nav-btn.active { color: var(--primary); }
+</style>
+</head>
+<body>
+<header>
+  <div class="brand-box">
+    <div class="logo-badge" aria-label="Apple Irrigation Logo">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect width="120" height="120" rx="16" fill="#ffffff"/>
+        <path d="M56 26 C44 10, 26 14, 30 30 C42 32, 52 29, 56 26 Z" fill="#2e9e2c"/>
+        <path d="M60 28 C64 18, 72 13, 80 12" stroke="#c62828" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+        <path d="M68 27 C42 22, 18 40, 22 72 C25 90, 38 98, 46 98" stroke="#c62828" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+        <path d="M74 28 C86 29, 95 36, 98 46" stroke="#c62828" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+        <text x="60" y="65" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-weight="700" font-size="25" fill="#c62828">Apple</text>
+        <path d="M36 77 Q60 84 94 74" stroke="#2e9e2c" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <text x="62" y="96" text-anchor="middle" font-family="Arial, sans-serif" font-style="italic" font-weight="800" font-size="14" fill="#2e9e2c">Irrigation</text>
+      </svg>
+    </div>
+    <div>
+      <p class="brand-title" id="headerBrandTitle">Apple Irrigation - ખેતી સહાયક</p>
+      <p class="brand-sub" id="headerBrandSub">પાક, ખાતર, દવા અને હવામાન માર્ગદર્શન</p>
+    </div>
+  </div>
+  <div class="hdr-actions">
+    <button class="icon-btn" onclick="openModal('adminPinModal')">📊 એડમિન</button>
+    <button class="icon-btn" onclick="openModal('settingsModal')">⚙️ સેટિંગ્સ</button>
+  </div>
+</header>
+
+<div class="container">
+  <div id="broadcastContainer"></div>
+  <div class="weather-card">
+    <div class="between">
+      <div>
+        <div style="font-weight:800; font-size:14px;" id="weatherLocationLabel">📍 લોકેશન: મોડાસા (Modasa)</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:2px;" id="weatherSummary">હવામાન માહિતી લોડ થઈ રહી છે...</div>
+      </div>
+      <div class="row">
+        <select id="citySelect" style="width:auto; margin:0; padding:6px 8px; font-size:12px;" onchange="selectCityWeather(this.value)">
+          <option value="Modasa,23.46,72.93">મોડાસા</option>
+          <option value="Deesa,24.26,72.18">ડીસા</option>
+          <option value="Palanpur,24.17,72.43">પાલનપુર</option>
+          <option value="Himatnagar,23.60,72.95">હિંમતનગર</option>
+          <option value="Mehsana,23.59,72.37">મહેસાણા</option>
+          <option value="Rajkot,22.30,70.80">રાજકોટ</option>
+          <option value="Junagadh,21.52,70.46">જૂનાગઢ</option>
+        </select>
+        <button class="btn btn-outline btn-sm" onclick="detectGPSWeather()">📡 GPS</button>
+        <button class="btn btn-sm" style="background:#ff8f00; color:#fff;" onclick="triggerRainAlertTest()">🌧️ ટેસ્ટ એલર્ટ</button>
+      </div>
+    </div>
+    <div id="weatherAlertBox"></div>
+  </div>
+
+  <div class="between" style="margin-bottom:6px;">
+    <div class="field-bar" id="fieldTabs" style="margin:0; flex:1;"></div>
+    <button class="btn btn-primary btn-sm" onclick="openAddFieldModal()">+ નવું ખેતર</button>
+  </div>
+  <div id="activeFieldContent"></div>
+</div>
+
+<div class="bottom-nav">
+  <button class="nav-btn active" onclick="openAddCropModal()">🌱 નવો પાક / બટાકા</button>
+  <button class="nav-btn" onclick="openCustomEntryModal()">➕ દવા / ખાતર ઉમેરો</button>
+  <button class="nav-btn" onclick="shareWhatsAppSchedule()">📲 WhatsApp શેર</button>
+  <button class="nav-btn" onclick="openFarmerRegModal()">👨‍🌾 ખેડૂત પ્રોફાઈલ</button>
+</div>
+
+<div class="modal-backdrop" id="farmerRegModal">
+  <div class="modal-box">
+    <h3 class="modal-title">👨‍🌾 ખેડૂત રજીસ્ટ્રેશન (Apple Irrigation)</h3>
+    <label>ખેડૂતનું પૂરું નામ *</label><input type="text" id="regName">
+    <label>મોબાઈલ નંબર *</label><input type="tel" id="regPhone">
+    <label>ગામ / તાલુકો *</label><input type="text" id="regVillage">
+    <label>મુખ્ય પાક</label><input type="text" id="regCrop">
+    <div class="between">
+      <button class="btn btn-outline" onclick="closeModal('farmerRegModal')">પછીથી કરીશ</button>
+      <button class="btn btn-primary" onclick="saveFarmerRegistration()">✅ વિગત સેવ કરો</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="addFieldModal">
+  <div class="modal-box">
+    <h3 class="modal-title">🌾 નવું ખેતર ઉમેરો</h3>
+    <label>ખેતરનું નામ *</label><input type="text" id="newFieldName">
+    <label>વિસ્તાર (એકર / વીઘા)</label><input type="text" id="newFieldArea">
+    <div class="between">
+      <button class="btn btn-outline" onclick="closeModal('addFieldModal')">રદ કરો</button>
+      <button class="btn btn-primary" onclick="addField()">ખેતર ઉમેરો</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="addCropModal">
+  <div class="modal-box">
+    <h3 class="modal-title">🌱 પાક અને વાવેતરની વિગત</h3>
+    <label>પાક પસંદ કરો</label>
+    <select id="cropNameSelect" onchange="handleCropSelectionChange()">
+      <option value="બટાકા">બટાકા (Potato)</option>
+      <option value="મગફળી">મગફળી</option>
+      <option value="ટામેટા">ટામેટા</option>
+      <option value="મરચાં">મરચાં</option>
+      <option value="કપાસ">કપાસ</option>
+      <option value="અડદ">અડદ</option>
+      <option value="અન્ય">અન્ય પાક (જાતે લખો)</option>
+    </select>
+    <div id="customCropNameWrap" style="display:none;"><label>પાકનું નામ</label><input type="text" id="customCropName"></div>
+    <div id="potatoVarietyWrap">
+      <label>બટાકાની વેરાયટી</label>
+      <select id="potatoVarietySelect" onchange="handlePotatoVarietyChange()">
+        <option value="લોકર (Laukar)">લોકર (Laukar)</option>
+        <option value="એલઆર (LR - Lady Rosetta)">એલઆર (LR - Lady Rosetta)</option>
+        <option value="સાન્ટાના (Santana)">સાન્ટાના (Santana)</option>
+        <option value="ઇનોવેટર (Innovator)">ઇનોવેટર (Innovator)</option>
+        <option value="કુફરી પુખરાજ (Kufri Pukhraj)">કુફરી પુખરાજ (Kufri Pukhraj)</option>
+        <option value="કુફરી જ્યોતિ (Kufri Jyoti)">કુફરી જ્યોતિ (Kufri Jyoti)</option>
+        <option value="કુફરી બાદશાહ (Kufri Badshah)">કુફરી બાદશાહ (Kufri Badshah)</option>
+        <option value="કુફરી ચિપ્સોના-1/3">કુફરી ચિપ્સોના-1/3</option>
+        <option value="ખ્યાતિ (Khyati)">ખ્યાતિ (Khyati)</option>
+        <option value="બહાર (Bahar)">બહાર (Bahar)</option>
+        <option value="અન્ય વેરાયટી">અન્ય વેરાયટી (જાતે લખો)</option>
+      </select>
+      <div id="customVarietyWrap" style="display:none;"><label>વેરાયટીનું નામ</label><input type="text" id="customVarietyName"></div>
+    </div>
+    <label>વાવેતરની તારીખ *</label><input type="date" id="sowingDateInput">
+    <label>પાકના કુલ દિવસો</label><input type="number" id="cropDaysInput" value="105">
+    <label>પાયામાં નાખેલ ખાતર</label><textarea id="basalFertInput"></textarea>
+    <label>શિડ્યુલ વિકલ્પ</label>
+    <select id="scheduleModeSelect">
+      <option value="default">ડીફોલ્ટ ખાતર અને દવાનું શિડ્યુલ ઓટોમેટિક લો</option>
+      <option value="custom">ખાલી રાખો — હું જાતે દિવસ મુજબ એડ કરીશ</option>
+    </select>
+    <div class="between">
+      <button class="btn btn-outline" onclick="closeModal('addCropModal')">રદ કરો</button>
+      <button class="btn btn-primary" onclick="saveCropPlan()">💾 પાક અને શિડ્યુલ સેવ કરો</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="customEntryModal">
+  <div class="modal-box">
+    <h3 class="modal-title">➕ નવી દવા કે વોટર સોલ્યુબલ ખાતર ઉમેરો</h3>
+    <label>પ્રકાર</label>
+    <select id="newEntryType">
+      <option value="fert">વોટર સોલ્યુબલ ખાતર (Fertigation)</option>
+      <option value="spray">દવાનો છંટકાવ (Spray)</option>
+    </select>
+    <label>વાવેતરથી કેટલામાં દિવસે આપવું? *</label><input type="number" id="newEntryDay">
+    <label>ખાતર અથવા દવાનું નામ *</label><input type="text" id="newEntryItem">
+    <label>નોંધ</label><input type="text" id="newEntryNote">
+    <div class="between">
+      <button class="btn btn-outline" onclick="closeModal('customEntryModal')">રદ કરો</button>
+      <button class="btn btn-primary" onclick="addCustomScheduleItem()">ઉમેરો</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="sprayLogModal">
+  <div class="modal-box">
+    <h3 class="modal-title">🧪 છાંટેલી દવા / આપેલ ખાતરની નોંધ</h3>
+    <p id="sprayTargetLabel" style="font-size:13px; font-weight:700;"></p>
+    <label>દવા / ખાતરનું નામ *</label><input type="text" id="sprayedMedicineName">
+    <label>પ્રમાણ (Dose)</label><input type="text" id="sprayedDose">
+    <label>તારીખ</label><input type="date" id="sprayedDate">
+    <div class="between">
+      <button class="btn btn-outline" onclick="closeModal('sprayLogModal')">રદ કરો</button>
+      <button class="btn btn-primary" onclick="saveSprayedLog()">✅ સેવ અને પૂર્ણ કરો</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="settingsModal">
+  <div class="modal-box">
+    <h3 class="modal-title">⚙️ સેટિંગ્સ</h3>
+    <label>કંપની / દુકાનનું નામ</label><input type="text" id="setBrandName" value="Apple Irrigation">
+    <label>મોબાઈલ નંબર</label><input type="text" id="setBrandPhone">
+    <div class="between">
+      <button class="btn btn-outline" onclick="closeModal('settingsModal')">બંધ કરો</button>
+      <button class="btn btn-primary" onclick="saveSettings()">સેવ કરો</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="adminPinModal">
+  <div class="modal-box">
+    <h3 class="modal-title">🔐 એડમિન PIN (1234)</h3>
+    <input type="password" id="adminPinInput" placeholder="1234">
+    <div class="between">
+      <button class="btn btn-outline" onclick="closeModal('adminPinModal')">રદ કરો</button>
+      <button class="btn btn-primary" onclick="verifyAdminPin()">ખોલો</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="adminPanelModal">
+  <div class="modal-box" style="max-width:680px;">
+    <div class="between" style="margin-bottom:10px;">
+      <h3 class="modal-title" style="margin:0;">📊 Apple Irrigation એડમિન પેનલ</h3>
+      <button class="btn btn-outline btn-sm" onclick="closeModal('adminPanelModal')">બંધ કરો</button>
+    </div>
+    <div class="card">
+      <div style="font-weight:800; margin-bottom:6px;">📢 ખેડૂતોને મેસેજ મોકલો</div>
+      <label>પ્રકાર</label>
+      <select id="bcastType">
+        <option value="ખેતી / દવા સલાહ">ખેતી / દવા સલાહ</option>
+        <option value="હવામાન ચેતવણી">હવામાન ચેતવણી</option>
+        <option value="ખાસ ઓફર / નવી પ્રોડક્ટ">ખાસ ઓફર / નવી પ્રોડક્ટ</option>
+      </select>
+      <label>શીર્ષક</label><input type="text" id="bcastTitle">
+      <label>મેસેજ</label><textarea id="bcastBody"></textarea>
+      <button class="btn btn-primary" onclick="publishBroadcast()">📢 મેસેજ પ્રકાશિત કરો</button>
+    </div>
+    <div class="card">
+      <div class="between" style="margin-bottom:8px;">
+        <div id="farmerCountSummary" style="font-weight:800;">કુલ ખેડૂતો: 0</div>
+        <button class="btn btn-primary btn-sm" onclick="downloadFarmersCSV()">📥 CSV ડાઉનલોડ</button>
+      </div>
+      <table>
+        <thead><tr><th>નામ</th><th>મોબાઈલ</th><th>ગામ</th><th>પાક</th><th>WhatsApp</th></tr></thead>
+        <tbody id="farmersTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORAGE_KEY = 'apple_irrigation_kheti_sahayak_v1';
+const defaultState = {
+  brandName: 'Apple Irrigation', brandPhone: '', currentFieldId: 'field_1',
+  weather: { city: 'મોડાસા', lat: 23.46, lon: 72.93, temp: 29, humidity: 65, rainProb: 10, alertActive: false },
+  broadcast: { active: true, type: 'ખેતી / દવા સલાહ', title: 'Apple Irrigation ખેતી સહાયક', body: 'પાક, ખાતર, દવા અને હવામાનની માહિતી અહીં જુઓ.', date: new Date().toLocaleDateString('gu-IN') },
+  farmerProfile: { name: '', phone: '', village: '', crop: '' },
+  farmersRegistry: [],
+  fields: [{
+    id: 'field_1', name: 'વાડીવાળું ખેતર', area: '4 એકર',
+    crop: {
+      name: 'બટાકા', variety: 'એલઆર (LR - Lady Rosetta)',
+      sowingDate: new Date(Date.now() - 25 * 86400000).toISOString().split('T')[0],
+      totalDays: 105, basalFertilizer: 'DAP 100 કિગ્રા, પોટાશ 50 કિગ્રા', schedule: []
+    }
+  }]
+};
+let state = loadState();
+let activeSprayItemId = null;
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) {
+      const init = JSON.parse(JSON.stringify(defaultState));
+      init.fields[0].crop.schedule = generateDefaultSchedule('બટાકા', 'એલઆર (LR - Lady Rosetta)', init.fields[0].crop.sowingDate);
+      return init;
+    }
+    return { ...JSON.parse(JSON.stringify(defaultState)), ...JSON.parse(raw) };
+  } catch (e) { return JSON.parse(JSON.stringify(defaultState)); }
+}
+function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+function addDaysToDate(dStr, days) { const d = new Date(dStr + 'T00:00:00'); d.setDate(d.getDate() + Number(days || 0)); return d.toISOString().split('T')[0]; }
+function formatDateGu(dStr) { if (!dStr) return '-'; return new Date(dStr + 'T00:00:00').toLocaleDateString('gu-IN', { day: '2-digit', month: 'short', year: 'numeric' }); }
+function calcElapsedDays(sDate) { if (!sDate) return 0; const start = new Date(sDate + 'T00:00:00'); const now = new Date(); const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); return Math.max(0, Math.floor((today - start) / 86400000)); }
+function generateDefaultSchedule(cropName, variety, sowingDate) {
+  const rows = cropName === 'બટાકા' ? [
+    { day: 15, type: 'fert', item: '19:19:19 — 5 કિગ્રા/એકર', note: 'મૂળ અને પાન વિકાસ' },
+    { day: 22, type: 'spray', item: 'મેન્કોઝેબ 75% WP + સ્ટીકર', note: 'સુકારા સામે રક્ષણ' },
+    { day: 30, type: 'fert', item: '12:61:00 — 5 કિગ્રા/એકર', note: 'કંદ બેસવા માટે' },
+    { day: 50, type: 'fert', item: 'કેલ્શિયમ નાઈટ્રેટ — 5 કિગ્રા/એકર', note: 'કંદ ગુણવત્તા' },
+    { day: 65, type: 'fert', item: '00:00:50 — 6 કિગ્રા/એકર', note: 'કંદ કદ અને ડ્રાય મેટર' }
+  ] : [
+    { day: 15, type: 'fert', item: '19:19:19 — 4 કિગ્રા/એકર', note: 'શરૂઆતનો વિકાસ' },
+    { day: 30, type: 'fert', item: '12:61:00 — 4 કિગ્રા/એકર', note: 'ફૂલ-ફળ સેટિંગ' }
+  ];
+  return rows.map((r, i) => ({ id: 'sch_' + Date.now() + '_' + i, day: r.day, date: addDaysToDate(sowingDate, r.day), type: r.type, item: r.item, note: r.note, done: false, sprayedMedicine: '', sprayedDose: '', sprayedDate: '' }));
+}
+function getCurrentField() { return state.fields.find(f => f.id === state.currentFieldId) || state.fields[0]; }
+function renderAll() {
+  document.getElementById('headerBrandTitle').textContent = (state.brandName || 'Apple Irrigation') + ' - ખેતી સહાયક';
+  renderBroadcast(); renderWeather(); renderFieldTabs(); renderActiveField(); saveState();
+}
+function renderBroadcast() {
+  const wrap = document.getElementById('broadcastContainer');
+  if (!state.broadcast || !state.broadcast.active || !state.broadcast.body) { wrap.innerHTML = ''; return; }
+  wrap.innerHTML = `<div class="broadcast-banner"><div class="broadcast-title">📢 ${escapeHtml(state.broadcast.title)}</div><div style="font-size:13px;">${escapeHtml(state.broadcast.body)}</div></div>`;
+}
+function renderWeather() {
+  const w = state.weather;
+  const field = getCurrentField();
+  const cropName = field && field.crop ? field.crop.name : 'બટાકા';
+  document.getElementById('weatherLocationLabel').textContent = `📍 લોકેશન: ${w.city}`;
+  document.getElementById('weatherSummary').textContent = `તાપમાન: ${w.temp}°C | ભેજ: ${w.humidity}% | વરસાદ: ${w.rainProb}%`;
+  const alertBox = document.getElementById('weatherAlertBox');
+  if (w.alertActive || Number(w.rainProb) >= 60 || Number(w.humidity) >= 85) {
+    alertBox.innerHTML = `<div class="weather-alert"><div class="weather-alert-title">🌧️ વરસાદી વાતાવરણ ચેતવણી (${escapeHtml(cropName)})</div><div style="font-size:13px;">${/બટાકા/i.test(cropName) ? 'બટાકામાં પાછોતરો સુકારો આવી શકે છે. મેન્કોઝેબ અથવા સાયમોક્સાનીલ + મેન્કોઝેબ + સ્ટીકર છાંટવું.' : 'વરસાદી ભેજમાં ફૂગજન્ય રોગ સામે યોગ્ય દવા + સ્ટીકર છાંટવું.'}</div></div>`;
+  } else alertBox.innerHTML = '';
+}
+function selectCityWeather(val) { const [city, lat, lon] = val.split(','); state.weather.city = city; state.weather.lat = Number(lat); state.weather.lon = Number(lon); state.weather.alertActive = false; fetchLiveWeather(Number(lat), Number(lon), city); }
+function detectGPSWeather() { if (!navigator.geolocation) return; navigator.geolocation.getCurrentPosition(p => fetchLiveWeather(p.coords.latitude.toFixed(2), p.coords.longitude.toFixed(2), `GPS (${p.coords.latitude.toFixed(2)}, ${p.coords.longitude.toFixed(2)})`)); }
+async function fetchLiveWeather(lat, lon, cityName) {
+  try {
+    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation_probability&timezone=auto`);
+    const d = await r.json();
+    if (d && d.current) { state.weather.temp = Math.round(d.current.temperature_2m); state.weather.humidity = Math.round(d.current.relative_humidity_2m); state.weather.rainProb = Math.round(d.current.precipitation_probability || 0); state.weather.city = cityName; }
+  } catch (e) {}
+  renderWeather(); saveState();
+}
+function triggerRainAlertTest() { state.weather.alertActive = true; state.weather.rainProb = 85; renderWeather(); saveState(); }
+function renderFieldTabs() { document.getElementById('fieldTabs').innerHTML = state.fields.map(f => `<button class="field-chip ${f.id === getCurrentField().id ? 'active' : ''}" onclick="switchField('${f.id}')">${escapeHtml(f.name)}</button>`).join(''); }
+function switchField(id) { state.currentFieldId = id; renderAll(); }
+function openAddFieldModal() { openModal('addFieldModal'); }
+function addField() {
+  const name = document.getElementById('newFieldName').value.trim();
+  const area = document.getElementById('newFieldArea').value.trim();
+  if (!name) return;
+  const today = new Date().toISOString().split('T')[0];
+  const nf = { id: 'field_' + Date.now(), name, area, crop: { name: 'બટાકા', variety: 'લોકર (Laukar)', sowingDate: today, totalDays: 100, basalFertilizer: '', schedule: generateDefaultSchedule('બટાકા', 'લોકર (Laukar)', today) } };
+  state.fields.push(nf); state.currentFieldId = nf.id; closeModal('addFieldModal'); renderAll();
+}
+function renderActiveField() {
+  const field = getCurrentField(); const crop = field.crop; const elapsed = calcElapsedDays(crop.sowingDate); const total = Number(crop.totalDays || 105);
+  const sch = (crop.schedule || []).slice().sort((a, b) => a.day - b.day).map(item => `
+    <div class="schedule-item ${item.done ? 'done' : ''}">
+      <div class="between">
+        <div><span class="badge ${item.type === 'fert' ? 'badge-fert' : 'badge-spray'}">${item.day}મો દિવસ • ${formatDateGu(item.date || addDaysToDate(crop.sowingDate, item.day))}</span> ${item.done ? '<span class="badge badge-done">✅ પૂર્ણ</span>' : ''}</div>
+        <button class="btn btn-primary btn-sm" onclick="openSprayLogModal('${item.id}')">🧪 દવા નોંધો</button>
+      </div>
+      <div style="font-weight:700; margin-top:6px;">${escapeHtml(item.item)}</div>
+      ${item.sprayedMedicine ? `<div class="sprayed-note">છાંટેલ: ${escapeHtml(item.sprayedMedicine)} ${item.sprayedDose ? `(${escapeHtml(item.sprayedDose)})` : ''}</div>` : ''}
+    </div>`).join('');
+  document.getElementById('activeFieldContent').innerHTML = `
+    <div class="card">
+      <div class="between">
+        <div><div style="font-weight:800; color:var(--primary);">🌱 ${escapeHtml(crop.name)} ${crop.variety ? `— ${escapeHtml(crop.variety)}` : ''}</div><div style="font-size:12px; color:var(--muted);">${escapeHtml(field.name)} • વાવેતર: ${formatDateGu(crop.sowingDate)}</div></div>
+        <button class="btn btn-outline btn-sm" onclick="openAddCropModal()">✏️ બદલો</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-box"><div class="stat-val">${elapsed} દિવસ</div><div class="stat-lbl">થયેલ દિવસ</div></div>
+        <div class="stat-box"><div class="stat-val">${Math.max(0, total - elapsed)} દિવસ</div><div class="stat-lbl">બાકી દિવસ</div></div>
+        <div class="stat-box"><div class="stat-val" style="font-size:14px;">${formatDateGu(addDaysToDate(crop.sowingDate, total))}</div><div class="stat-lbl">તૈયાર તારીખ</div></div>
+      </div>
+      <div style="font-size:12px;"><strong>પાયાનું ખાતર:</strong> ${escapeHtml(crop.basalFertilizer || 'નોંધાયેલ નથી')}</div>
+    </div>
+    <div class="card"><div style="font-weight:800; margin-bottom:8px;">📅 શિડ્યુલ</div>${sch}</div>`;
+}
+function openAddCropModal() { const c = getCurrentField().crop; document.getElementById('sowingDateInput').value = c.sowingDate; document.getElementById('cropDaysInput').value = c.totalDays || 105; document.getElementById('basalFertInput').value = c.basalFertilizer || ''; handleCropSelectionChange(); openModal('addCropModal'); }
+function handleCropSelectionChange() { const v = document.getElementById('cropNameSelect').value; document.getElementById('potatoVarietyWrap').style.display = v === 'બટાકા' ? 'block' : 'none'; document.getElementById('customCropNameWrap').style.display = v === 'અન્ય' ? 'block' : 'none'; }
+function handlePotatoVarietyChange() { document.getElementById('customVarietyWrap').style.display = document.getElementById('potatoVarietySelect').value === 'અન્ય વેરાયટી' ? 'block' : 'none'; }
+function saveCropPlan() {
+  const sCrop = document.getElementById('cropNameSelect').value;
+  const cropName = sCrop === 'અન્ય' ? (document.getElementById('customCropName').value.trim() || 'પાક') : sCrop;
+  const variety = cropName === 'બટાકા' ? (document.getElementById('potatoVarietySelect').value === 'અન્ય વેરાયટી' ? document.getElementById('customVarietyName').value.trim() : document.getElementById('potatoVarietySelect').value) : '';
+  const sowingDate = document.getElementById('sowingDateInput').value;
+  const totalDays = Number(document.getElementById('cropDaysInput').value || 105);
+  const basalFertilizer = document.getElementById('basalFertInput').value.trim();
+  const mode = document.getElementById('scheduleModeSelect').value;
+  getCurrentField().crop = { name: cropName, variety, sowingDate, totalDays, basalFertilizer, schedule: mode === 'default' ? generateDefaultSchedule(cropName, variety, sowingDate) : [] };
+  closeModal('addCropModal'); renderAll();
+}
+function openCustomEntryModal() { openModal('customEntryModal'); }
+function addCustomScheduleItem() {
+  const type = document.getElementById('newEntryType').value; const day = Number(document.getElementById('newEntryDay').value); const item = document.getElementById('newEntryItem').value.trim(); const note = document.getElementById('newEntryNote').value.trim();
+  if (!item) return;
+  const f = getCurrentField();
+  f.crop.schedule.push({ id: 'sch_' + Date.now(), day, date: addDaysToDate(f.crop.sowingDate, day), type, item, note, done: false, sprayedMedicine: '', sprayedDose: '', sprayedDate: '' });
+  closeModal('customEntryModal'); renderAll();
+}
+function openSprayLogModal(id) { activeSprayItemId = id; const item = getCurrentField().crop.schedule.find(x => x.id === id); document.getElementById('sprayTargetLabel').textContent = item ? `${item.day}મો દિવસ: ${item.item}` : ''; document.getElementById('sprayedMedicineName').value = item?.sprayedMedicine || ''; document.getElementById('sprayedDose').value = item?.sprayedDose || ''; document.getElementById('sprayedDate').value = item?.sprayedDate || new Date().toISOString().split('T')[0]; openModal('sprayLogModal'); }
+function saveSprayedLog() {
+  const med = document.getElementById('sprayedMedicineName').value.trim(); if (!med) return;
+  const item = getCurrentField().crop.schedule.find(x => x.id === activeSprayItemId);
+  if (item) { item.sprayedMedicine = med; item.sprayedDose = document.getElementById('sprayedDose').value.trim(); item.sprayedDate = document.getElementById('sprayedDate').value; item.done = true; }
+  closeModal('sprayLogModal'); renderAll();
+}
+function shareWhatsAppSchedule() {
+  const f = getCurrentField(); const c = f.crop;
+  const lines = [`*${state.brandName} — ${c.name} (${c.variety || ''})*`, `ખેતર: ${f.name} • વાવેતર: ${formatDateGu(c.sowingDate)} (${calcElapsedDays(c.sowingDate)} દિવસ)`, ...(c.schedule || []).map(s => `${s.done ? '✅' : '▫️'} ${s.day}મો દિવસ: ${s.item}${s.sprayedMedicine ? ` [છાંટેલ: ${s.sprayedMedicine}]` : ''}`)];
+  window.open('https://wa.me/?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+}
+function openFarmerRegModal() { openModal('farmerRegModal'); }
+function saveFarmerRegistration() {
+  const name = document.getElementById('regName').value.trim(); const phone = document.getElementById('regPhone').value.trim(); const village = document.getElementById('regVillage').value.trim(); const crop = document.getElementById('regCrop').value.trim();
+  if (!name || !phone || !village) return;
+  const entry = { name, phone, village, crop, registeredAt: new Date().toISOString().split('T')[0] };
+  state.farmerProfile = entry;
+  const idx = state.farmersRegistry.findIndex(x => x.phone === phone);
+  if (idx >= 0) state.farmersRegistry[idx] = entry; else state.farmersRegistry.push(entry);
+  saveState(); closeModal('farmerRegModal'); alert('વિગત સેવ થઈ ગઈ!');
+}
+function saveSettings() { state.brandName = document.getElementById('setBrandName').value.trim() || 'Apple Irrigation'; state.brandPhone = document.getElementById('setBrandPhone').value.trim(); closeModal('settingsModal'); renderAll(); }
+function verifyAdminPin() { if (document.getElementById('adminPinInput').value.trim() !== '1234') { alert('PIN 1234 છે.'); return; } document.getElementById('adminPinInput').value = ''; closeModal('adminPinModal'); renderAdminPanel(); openModal('adminPanelModal'); }
+function publishBroadcast() {
+  const title = document.getElementById('bcastTitle').value.trim(); const body = document.getElementById('bcastBody').value.trim(); if (!title || !body) return;
+  state.broadcast = { active: true, type: document.getElementById('bcastType').value, title, body, date: new Date().toLocaleDateString('gu-IN') };
+  saveState(); renderBroadcast(); alert('મેસેજ પ્રકાશિત થયો!');
+}
+function renderAdminPanel() {
+  const list = state.farmersRegistry || [];
+  document.getElementById('farmerCountSummary').textContent = `કુલ ખેડૂતો: ${list.length}`;
+  document.getElementById('farmersTableBody').innerHTML = list.length ? list.map(f => `<tr><td>${escapeHtml(f.name)}</td><td>${escapeHtml(f.phone)}</td><td>${escapeHtml(f.village)}</td><td>${escapeHtml(f.crop || '-')}</td><td><a class="btn btn-wa btn-sm" style="text-decoration:none;" target="_blank" href="https://wa.me/91${f.phone.replace(/\D/g,'').slice(-10)}">WA</a></td></tr>`).join('') : '<tr><td colspan="5">કોઈ ડેટા નથી</td></tr>';
+}
+function downloadFarmersCSV() {
+  const header = ['નામ', 'મોબાઈલ', 'ગામ', 'પાક', 'તારીખ'];
+  const rows = (state.farmersRegistry || []).map(f => [f.name, f.phone, f.village, f.crop || '', f.registeredAt || '']);
+  const csv = '\uFEFF' + [header, ...rows].map(r => r.map(c => `"${String(c || '').replace(/"/g, '""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Apple_Irrigation_Farmers.csv'; a.click();
+}
+function openModal(id) { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])); }
+
+renderAll();
+fetchLiveWeather(state.weather.lat, state.weather.lon, state.weather.city);
+</script>
+</body>
+</html>
