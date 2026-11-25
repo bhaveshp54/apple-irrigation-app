@@ -18,19 +18,19 @@
     --alert-border: #e53935;
   }
   * { box-sizing: border-box; font-family: 'Noto Sans Gujarati', system-ui, -apple-system, sans-serif; }
-  body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 84px; }
+  body { margin: 0; background: var(--bg); color: var(--text); padding-bottom: 88px; }
   header {
     background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
     color: #fff;
-    padding: 14px 16px;
+    padding: 12px 14px;
     position: sticky;
     top: 0;
     z-index: 50;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.14);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 10px;
+    gap: 8px;
   }
   .brand-box { display: flex; align-items: center; gap: 10px; }
   .logo-badge {
@@ -39,39 +39,43 @@
     border: 2px solid #c8e6c9; flex-shrink: 0; overflow: hidden; padding: 2px;
   }
   .logo-badge svg { width: 100%; height: 100%; display: block; }
-  .brand-title { font-size: 17px; font-weight: 700; margin: 0; }
-  .brand-sub { font-size: 11px; opacity: 0.9; margin: 2px 0 0; }
+  .brand-title { font-size: 16px; font-weight: 800; margin: 0; }
+  .brand-sub { font-size: 11px; opacity: 0.92; margin: 2px 0 0; }
   .hdr-actions { display: flex; gap: 6px; }
   .icon-btn {
     background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.28);
     color: #fff; border-radius: 8px; padding: 7px 10px; font-size: 12px;
-    cursor: pointer; font-weight: 600;
+    cursor: pointer; font-weight: 700;
   }
-  .container { max-width: 780px; margin: 0 auto; padding: 14px; }
+  .container { max-width: 820px; margin: 0 auto; padding: 12px; }
   .card {
     background: var(--card); border: 1px solid var(--border); border-radius: 14px;
     padding: 14px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   }
-  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-  .between { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .between { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
   .broadcast-banner {
     background: #e8f5e9; border: 1.5px solid #43a047; border-radius: 12px;
     padding: 12px 14px; margin-bottom: 12px;
   }
-  .broadcast-title { font-weight: 700; color: #1b5e20; font-size: 14px; margin-bottom: 4px; }
+  .broadcast-title { font-weight: 800; color: #1b5e20; font-size: 14px; }
   .weather-card {
-    background: linear-gradient(135deg, #e3f2fd 0%, #f1f8e9 100%);
-    border: 1px solid #bbdefb; border-radius: 14px; padding: 14px; margin-bottom: 12px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%);
+    border: 1px solid #b2dfdb; border-radius: 14px; padding: 14px; margin-bottom: 12px;
+  }
+  .weather-station-pill {
+    display: inline-block; margin-top: 4px; padding: 3px 9px; border-radius: 12px;
+    background: #ffffff; border: 1px solid #c8e6c9; font-size: 11px; font-weight: 700; color: #1b5e20;
   }
   .weather-alert {
     background: var(--alert-bg); border: 1.5px solid var(--alert-border);
     border-radius: 12px; padding: 12px; margin-top: 10px;
   }
-  .weather-alert-title { font-weight: 700; color: #b71c1c; font-size: 14px; margin-bottom: 4px; }
-  .field-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 10px; }
+  .weather-alert-title { font-weight: 800; color: #b71c1c; font-size: 14px; margin-bottom: 4px; }
+  .field-bar { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
   .field-chip {
     padding: 8px 14px; border-radius: 20px; border: 1px solid var(--border);
-    background: #fff; color: var(--text); font-size: 13px; font-weight: 600;
+    background: #fff; color: var(--text); font-size: 13px; font-weight: 700;
     cursor: pointer; white-space: nowrap;
   }
   .field-chip.active { background: var(--primary); color: #fff; border-color: var(--primary); }
@@ -80,8 +84,14 @@
     background: #f8fbf8; border: 1px solid var(--border); border-radius: 10px;
     padding: 10px; text-align: center;
   }
-  .stat-val { font-size: 20px; font-weight: 800; color: var(--primary); }
+  .stat-val { font-size: 19px; font-weight: 800; color: var(--primary); }
   .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .filter-btn {
+    border: 1px solid var(--border); background: #f8fbf8; color: var(--text);
+    padding: 6px 11px; border-radius: 16px; font-size: 12px; font-weight: 700; cursor: pointer;
+  }
+  .filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
   label { display: block; font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
   input, select, textarea {
     width: 100%; padding: 9px 11px; border: 1px solid #c5d1c8; border-radius: 9px;
@@ -89,28 +99,34 @@
   }
   textarea { min-height: 70px; resize: vertical; }
   .btn {
-    border: none; border-radius: 9px; padding: 9px 14px; font-size: 13px;
+    border: none; border-radius: 9px; padding: 9px 13px; font-size: 13px;
     font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
   }
   .btn-primary { background: var(--primary); color: #fff; }
   .btn-wa { background: #128c7e; color: #fff; }
   .btn-outline { background: #fff; color: var(--primary); border: 1px solid var(--primary); }
   .btn-sm { padding: 6px 10px; font-size: 12px; border-radius: 7px; }
-  .btn-danger { background: #d32f2f; color: #fff; }
   .schedule-item {
-    border: 1px solid var(--border); border-radius: 11px; padding: 11px;
-    margin-bottom: 8px; background: #fff;
+    border: 1px solid var(--border); border-radius: 12px; padding: 12px;
+    margin-bottom: 9px; background: #fff;
   }
   .schedule-item.done { background: #f3faf4; border-color: #a5d6a7; }
-  .badge {
-    display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;
+  .method-tag {
+    display: inline-block; padding: 3px 9px; border-radius: 12px; font-size: 11px; font-weight: 800; margin-right: 4px;
   }
-  .badge-fert { background: #e8f5e9; color: #1b5e20; }
-  .badge-spray { background: #fff3e0; color: #e65100; }
-  .badge-done { background: #c8e6c9; color: #1b5e20; }
+  .method-drip { background: #e3f2fd; color: #0d47a1; border: 1px solid #90caf9; }
+  .method-spray { background: #fff3e0; color: #e65100; border: 1px solid #ffcc80; }
+  .day-tag {
+    display: inline-block; padding: 3px 9px; border-radius: 12px; font-size: 11px; font-weight: 800;
+    background: #eef4ef; color: #1b5e20; margin-right: 4px;
+  }
+  .done-tag {
+    display: inline-block; padding: 3px 9px; border-radius: 12px; font-size: 11px; font-weight: 800;
+    background: #c8e6c9; color: #1b5e20;
+  }
   .sprayed-note {
     margin-top: 8px; padding: 8px 10px; border-radius: 8px;
-    background: #eef7f0; font-size: 12px; color: #1b5e20; font-weight: 600;
+    background: #eef7f0; font-size: 12px; color: #1b5e20; font-weight: 700;
   }
   .modal-backdrop {
     position: fixed; inset: 0; background: rgba(0,0,0,0.52); display: none;
@@ -118,7 +134,7 @@
   }
   .modal-backdrop.open { display: flex; }
   .modal-box {
-    background: #fff; border-radius: 16px; width: 100%; max-width: 540px;
+    background: #fff; border-radius: 16px; width: 100%; max-width: 560px;
     max-height: 90vh; overflow-y: auto; padding: 18px; box-shadow: 0 12px 32px rgba(0,0,0,0.22);
   }
   .modal-title { font-size: 17px; font-weight: 800; margin: 0 0 12px; color: var(--primary); }
@@ -132,12 +148,12 @@
   }
   .nav-btn {
     background: none; border: none; font-size: 12px; font-weight: 700;
-    color: var(--muted); cursor: pointer; padding: 4px 8px;
+    color: var(--muted); cursor: pointer; padding: 4px 6px;
   }
-  .nav-btn.active { color: var(--primary); }
 </style>
 </head>
 <body>
+
 <header>
   <div class="brand-box">
     <div class="logo-badge" aria-label="Apple Irrigation Logo">
@@ -154,7 +170,7 @@
     </div>
     <div>
       <p class="brand-title" id="headerBrandTitle">Apple Irrigation - ખેતી સહાયક</p>
-      <p class="brand-sub" id="headerBrandSub">પાક, ખાતર, દવા અને હવામાન માર્ગદર્શન</p>
+      <p class="brand-sub">ડ્રિપ, છંટકાવ, પાક શિડ્યુલ અને લોકલ હવામાન</p>
     </div>
   </div>
   <div class="hdr-actions">
@@ -165,53 +181,55 @@
 
 <div class="container">
   <div id="broadcastContainer"></div>
+
   <div class="weather-card">
     <div class="between">
       <div>
-        <div style="font-weight:800; font-size:14px;" id="weatherLocationLabel">📍 લોકેશન: મોડાસા (Modasa)</div>
-        <div style="font-size:12px; color:var(--muted); margin-top:2px;" id="weatherSummary">હવામાન માહિતી લોડ થઈ રહી છે...</div>
+        <div style="font-weight:800; font-size:14px;" id="weatherLocationLabel">📍 લોકેશન: ફુટા (Futa)</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:2px;" id="weatherSummary">તાપમાન: --°C | ભેજ: --% | વરસાદ: --%</div>
+        <div class="weather-station-pill" id="weatherStationInfo">🛰️ નજીકનું લોકેશન / સ્ટેશન: લોડ થઈ રહ્યું છે...</div>
       </div>
       <div class="row">
-        <select id="citySelect" style="width:auto; margin:0; padding:6px 8px; font-size:12px;" onchange="selectCityWeather(this.value)">
-          <option value="Modasa,23.46,72.93">મોડાસા</option>
-          <option value="Deesa,24.26,72.18">ડીસા</option>
-          <option value="Palanpur,24.17,72.43">પાલનપુર</option>
-          <option value="Himatnagar,23.60,72.95">હિંમતનગર</option>
-          <option value="Mehsana,23.59,72.37">મહેસાણા</option>
-          <option value="Rajkot,22.30,70.80">રાજકોટ</option>
-          <option value="Junagadh,21.52,70.46">જૂનાગઢ</option>
+        <select id="localSpotSelect" style="width:auto; margin:0; padding:6px 8px; font-size:12px;" onchange="selectLocalSpot(this.value)">
+          <option value="ફુટા (Futa),23.48,72.95,ફુટા - મોડાસા નજીક">ફુટા (Futa)</option>
+          <option value="મણિપુરા (Manipura),23.45,72.91,મણિપુરા - મોડાસા નજીક">મણિપુરા (Manipura)</option>
+          <option value="ઇસરોલ (Isrol),23.43,72.97,ઇસરોલ - મોડાસા નજીક">ઇસરોલ (Isrol)</option>
+          <option value="મોડાસા (Modasa),23.46,72.93,મોડાસા લોકલ ગ્રીડ">મોડાસા (Modasa)</option>
+          <option value="શામળાજી (Shamlaji),23.69,73.34,શામળાજી - અરવલ્લી">શામળાજી (Shamlaji)</option>
+          <option value="ડીસા (Deesa),24.26,72.18,ડીસા - બનાસકાંઠા">ડીસા (Deesa)</option>
         </select>
-        <button class="btn btn-outline btn-sm" onclick="detectGPSWeather()">📡 GPS</button>
-        <button class="btn btn-sm" style="background:#ff8f00; color:#fff;" onclick="triggerRainAlertTest()">🌧️ ટેસ્ટ એલર્ટ</button>
+        <button class="btn btn-primary btn-sm" onclick="detectLocalGPS()">📡 લોકલ GPS</button>
+        <button class="btn btn-outline btn-sm" onclick="refreshLiveWeather()">🔄 રિફ્રેશ</button>
       </div>
     </div>
     <div id="weatherAlertBox"></div>
   </div>
 
-  <div class="between" style="margin-bottom:6px;">
+  <div class="between" style="margin-bottom:8px;">
     <div class="field-bar" id="fieldTabs" style="margin:0; flex:1;"></div>
     <button class="btn btn-primary btn-sm" onclick="openAddFieldModal()">+ નવું ખેતર</button>
   </div>
+
   <div id="activeFieldContent"></div>
 </div>
 
 <div class="bottom-nav">
-  <button class="nav-btn active" onclick="openAddCropModal()">🌱 નવો પાક / બટાકા</button>
-  <button class="nav-btn" onclick="openCustomEntryModal()">➕ દવા / ખાતર ઉમેરો</button>
-  <button class="nav-btn" onclick="shareWhatsAppSchedule()">📲 WhatsApp શેર</button>
-  <button class="nav-btn" onclick="openFarmerRegModal()">👨‍🌾 ખેડૂત પ્રોફાઈલ</button>
+  <button class="nav-btn" onclick="openAddCropModal()">🌱 પાક / સાન્ટાના</button>
+  <button class="nav-btn" onclick="openCustomEntryModal()">➕ ડ્રિપ / છંટકાવ</button>
+  <button class="nav-btn" onclick="shareWhatsAppSchedule()">📲 WhatsApp</button>
+  <button class="nav-btn" onclick="openFarmerRegModal()">👨‍🌾 ખેડૂત</button>
 </div>
 
 <div class="modal-backdrop" id="farmerRegModal">
   <div class="modal-box">
-    <h3 class="modal-title">👨‍🌾 ખેડૂત રજીસ્ટ્રેશન (Apple Irrigation)</h3>
-    <label>ખેડૂતનું પૂરું નામ *</label><input type="text" id="regName">
-    <label>મોબાઈલ નંબર *</label><input type="tel" id="regPhone">
-    <label>ગામ / તાલુકો *</label><input type="text" id="regVillage">
-    <label>મુખ્ય પાક</label><input type="text" id="regCrop">
+    <h3 class="modal-title">👨‍🌾 ખેડૂત રજીસ્ટ્રેશન</h3>
+    <label>ખેડૂતનું નામ *</label><input type="text" id="regName" placeholder="દા.ત. ભાવેશભાઈ પટેલ">
+    <label>મોબાઈલ નંબર *</label><input type="tel" id="regPhone" placeholder="10 અંકનો મોબાઈલ નંબર">
+    <label>ગામ / નજીકનું સ્થળ *</label><input type="text" id="regVillage" placeholder="દા.ત. ફુટા / મણિપુરા / ઇસરોલ">
+    <label>મુખ્ય પાક</label><input type="text" id="regCrop" placeholder="દા.ત. બટાકા - સાન્ટાના">
     <div class="between">
-      <button class="btn btn-outline" onclick="closeModal('farmerRegModal')">પછીથી કરીશ</button>
-      <button class="btn btn-primary" onclick="saveFarmerRegistration()">✅ વિગત સેવ કરો</button>
+      <button class="btn btn-outline" onclick="closeModal('farmerRegModal')">બંધ કરો</button>
+      <button class="btn btn-primary" onclick="saveFarmerRegistration()">✅ સેવ કરો</button>
     </div>
   </div>
 </div>
@@ -219,8 +237,8 @@
 <div class="modal-backdrop" id="addFieldModal">
   <div class="modal-box">
     <h3 class="modal-title">🌾 નવું ખેતર ઉમેરો</h3>
-    <label>ખેતરનું નામ *</label><input type="text" id="newFieldName">
-    <label>વિસ્તાર (એકર / વીઘા)</label><input type="text" id="newFieldArea">
+    <label>ખેતરનું નામ *</label><input type="text" id="newFieldName" placeholder="દા.ત. વાડીવાળું ખેતર">
+    <label>વિસ્તાર (એકર / વીઘા)</label><input type="text" id="newFieldArea" placeholder="દા.ત. 4 એકર">
     <div class="between">
       <button class="btn btn-outline" onclick="closeModal('addFieldModal')">રદ કરો</button>
       <button class="btn btn-primary" onclick="addField()">ખેતર ઉમેરો</button>
@@ -238,53 +256,50 @@
       <option value="ટામેટા">ટામેટા</option>
       <option value="મરચાં">મરચાં</option>
       <option value="કપાસ">કપાસ</option>
-      <option value="અડદ">અડદ</option>
       <option value="અન્ય">અન્ય પાક (જાતે લખો)</option>
     </select>
     <div id="customCropNameWrap" style="display:none;"><label>પાકનું નામ</label><input type="text" id="customCropName"></div>
     <div id="potatoVarietyWrap">
       <label>બટાકાની વેરાયટી</label>
       <select id="potatoVarietySelect" onchange="handlePotatoVarietyChange()">
-        <option value="લોકર (Laukar)">લોકર (Laukar)</option>
-        <option value="એલઆર (LR - Lady Rosetta)">એલઆર (LR - Lady Rosetta)</option>
         <option value="સાન્ટાના (Santana)">સાન્ટાના (Santana)</option>
+        <option value="એલઆર (LR - Lady Rosetta)">એલઆર (LR - Lady Rosetta)</option>
+        <option value="લોકર (Laukar)">લોકર (Laukar)</option>
         <option value="ઇનોવેટર (Innovator)">ઇનોવેટર (Innovator)</option>
         <option value="કુફરી પુખરાજ (Kufri Pukhraj)">કુફરી પુખરાજ (Kufri Pukhraj)</option>
         <option value="કુફરી જ્યોતિ (Kufri Jyoti)">કુફરી જ્યોતિ (Kufri Jyoti)</option>
         <option value="કુફરી બાદશાહ (Kufri Badshah)">કુફરી બાદશાહ (Kufri Badshah)</option>
         <option value="કુફરી ચિપ્સોના-1/3">કુફરી ચિપ્સોના-1/3</option>
-        <option value="ખ્યાતિ (Khyati)">ખ્યાતિ (Khyati)</option>
-        <option value="બહાર (Bahar)">બહાર (Bahar)</option>
         <option value="અન્ય વેરાયટી">અન્ય વેરાયટી (જાતે લખો)</option>
       </select>
       <div id="customVarietyWrap" style="display:none;"><label>વેરાયટીનું નામ</label><input type="text" id="customVarietyName"></div>
     </div>
     <label>વાવેતરની તારીખ *</label><input type="date" id="sowingDateInput">
     <label>પાકના કુલ દિવસો</label><input type="number" id="cropDaysInput" value="105">
-    <label>પાયામાં નાખેલ ખાતર</label><textarea id="basalFertInput"></textarea>
+    <label>પાયામાં નાખેલ ખાતર (Basal Dose)</label><textarea id="basalFertInput" placeholder="દા.ત. DAP, પોટાશ, છાણીયું ખાતર"></textarea>
     <label>શિડ્યુલ વિકલ્પ</label>
     <select id="scheduleModeSelect">
-      <option value="default">ડીફોલ્ટ ખાતર અને દવાનું શિડ્યુલ ઓટોમેટિક લો</option>
-      <option value="custom">ખાલી રાખો — હું જાતે દિવસ મુજબ એડ કરીશ</option>
+      <option value="default">વેરાયટી મુજબ ડ્રિપ + છંટકાવ શિડ્યુલ ઓટોમેટિક લો</option>
+      <option value="custom">ખાલી રાખો — હું જાતે ડ્રિપ/છંટકાવ એડ કરીશ</option>
     </select>
     <div class="between">
       <button class="btn btn-outline" onclick="closeModal('addCropModal')">રદ કરો</button>
-      <button class="btn btn-primary" onclick="saveCropPlan()">💾 પાક અને શિડ્યુલ સેવ કરો</button>
+      <button class="btn btn-primary" onclick="saveCropPlan()">💾 સેવ કરો</button>
     </div>
   </div>
 </div>
 
 <div class="modal-backdrop" id="customEntryModal">
   <div class="modal-box">
-    <h3 class="modal-title">➕ નવી દવા કે વોટર સોલ્યુબલ ખાતર ઉમેરો</h3>
-    <label>પ્રકાર</label>
-    <select id="newEntryType">
-      <option value="fert">વોટર સોલ્યુબલ ખાતર (Fertigation)</option>
-      <option value="spray">દવાનો છંટકાવ (Spray)</option>
+    <h3 class="modal-title">➕ નવી ડ્રિપ કે છંટકાવ એન્ટ્રી ઉમેરો</h3>
+    <label>આપવાની પદ્ધતિ *</label>
+    <select id="newEntryMethod">
+      <option value="drip">💧 ડ્રિપથી આપવું (ડ્રિપ ઇરિગેશન / ફર્ટિગેશન)</option>
+      <option value="spray">🧴 છંટકાવમાં આપવું (પંપ / ફોલિયર સ્પ્રે)</option>
     </select>
-    <label>વાવેતરથી કેટલામાં દિવસે આપવું? *</label><input type="number" id="newEntryDay">
-    <label>ખાતર અથવા દવાનું નામ *</label><input type="text" id="newEntryItem">
-    <label>નોંધ</label><input type="text" id="newEntryNote">
+    <label>વાવેતરથી કેટલામાં દિવસે? *</label><input type="number" id="newEntryDay" placeholder="દા.ત. 25" min="0" max="365">
+    <label>ખાતર અથવા દવાનું નામ અને એક એકરનું પ્રમાણ *</label><input type="text" id="newEntryItem" placeholder="દા.ત. 19:19:19 — 4 થી 5 કિગ્રા / એકર">
+    <label>ઉદ્દેશ / નોંધ</label><input type="text" id="newEntryNote" placeholder="દા.ત. આગોતરા સુકારા સામે રક્ષણ અથવા મૂળ વિકાસ">
     <div class="between">
       <button class="btn btn-outline" onclick="closeModal('customEntryModal')">રદ કરો</button>
       <button class="btn btn-primary" onclick="addCustomScheduleItem()">ઉમેરો</button>
@@ -294,10 +309,10 @@
 
 <div class="modal-backdrop" id="sprayLogModal">
   <div class="modal-box">
-    <h3 class="modal-title">🧪 છાંટેલી દવા / આપેલ ખાતરની નોંધ</h3>
-    <p id="sprayTargetLabel" style="font-size:13px; font-weight:700;"></p>
-    <label>દવા / ખાતરનું નામ *</label><input type="text" id="sprayedMedicineName">
-    <label>પ્રમાણ (Dose)</label><input type="text" id="sprayedDose">
+    <h3 class="modal-title">🧪 આપેલ ખાતર / છાંટેલી દવાની નોંધ</h3>
+    <p id="sprayTargetLabel" style="font-size:13px; font-weight:800;"></p>
+    <label>ખરેખર કઈ દવા / ખાતર આપ્યું? *</label><input type="text" id="sprayedMedicineName">
+    <label>કેટલું પ્રમાણ વાપર્યું?</label><input type="text" id="sprayedDose" placeholder="દા.ત. 4.5 કિગ્રા / એકર (ડ્રિપ)">
     <label>તારીખ</label><input type="date" id="sprayedDate">
     <div class="between">
       <button class="btn btn-outline" onclick="closeModal('sprayLogModal')">રદ કરો</button>
@@ -353,7 +368,7 @@
         <button class="btn btn-primary btn-sm" onclick="downloadFarmersCSV()">📥 CSV ડાઉનલોડ</button>
       </div>
       <table>
-        <thead><tr><th>નામ</th><th>મોબાઈલ</th><th>ગામ</th><th>પાક</th><th>WhatsApp</th></tr></thead>
+        <thead><tr><th>નામ</th><th>મોબાઈલ</th><th>ગામ / સ્થળ</th><th>પાક</th><th>WhatsApp</th></tr></thead>
         <tbody id="farmersTableBody"></tbody>
       </table>
     </div>
@@ -361,22 +376,46 @@
 </div>
 
 <script>
-const STORAGE_KEY = 'apple_irrigation_kheti_sahayak_v1';
+const STORAGE_KEY = 'apple_irrigation_kheti_sahayak_v2';
+let currentFilter = 'all';
+
 const defaultState = {
-  brandName: 'Apple Irrigation', brandPhone: '', currentFieldId: 'field_1',
-  weather: { city: 'મોડાસા', lat: 23.46, lon: 72.93, temp: 29, humidity: 65, rainProb: 10, alertActive: false },
-  broadcast: { active: true, type: 'ખેતી / દવા સલાહ', title: 'Apple Irrigation ખેતી સહાયક', body: 'પાક, ખાતર, દવા અને હવામાનની માહિતી અહીં જુઓ.', date: new Date().toLocaleDateString('gu-IN') },
+  brandName: 'Apple Irrigation',
+  brandPhone: '',
+  currentFieldId: 'field_1',
+  weather: {
+    placeName: 'ફુટા (Futa)',
+    stationLabel: 'ફુટા - મોડાસા નજીક',
+    lat: 23.48,
+    lon: 72.95,
+    temp: 26,
+    humidity: 55,
+    rainProb: 0
+  },
+  broadcast: {
+    active: true,
+    type: 'ખેતી / દવા સલાહ',
+    title: 'Apple Irrigation ખેતી સહાયક',
+    body: 'પાકના દિવસ મુજબ ડ્રિપ અને છંટકાવનું સ્પષ્ટ શિડ્યુલ તથા નજીકના લોકલ લોકેશનનું હવામાન જુઓ.',
+    date: new Date().toLocaleDateString('gu-IN')
+  },
   farmerProfile: { name: '', phone: '', village: '', crop: '' },
   farmersRegistry: [],
   fields: [{
-    id: 'field_1', name: 'વાડીવાળું ખેતર', area: '4 એકર',
+    id: 'field_1',
+    name: 'વાડીવાળું ખેતર',
+    area: '4 એકર',
     crop: {
-      name: 'બટાકા', variety: 'એલઆર (LR - Lady Rosetta)',
+      name: 'બટાકા',
+      variety: 'સાન્ટાના (Santana)',
       sowingDate: new Date(Date.now() - 25 * 86400000).toISOString().split('T')[0],
-      totalDays: 105, basalFertilizer: 'DAP 100 કિગ્રા, પોટાશ 50 કિગ્રા', schedule: []
+      totalDays: 105,
+      basalFertilizer: 'DAP 100 કિગ્રા, પોટાશ 50 કિગ્રા, છાણીયું ખાતર',
+      schedule: []
     }
   }]
 };
+
 let state = loadState();
 let activeSprayItemId = null;
 
@@ -385,88 +424,302 @@ function loadState() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) {
       const init = JSON.parse(JSON.stringify(defaultState));
-      init.fields[0].crop.schedule = generateDefaultSchedule('બટાકા', 'એલઆર (LR - Lady Rosetta)', init.fields[0].crop.sowingDate);
+      init.fields[0].crop.schedule = generateDefaultSchedule('બટાકા', 'સાન્ટાના (Santana)', init.fields[0].crop.sowingDate);
       return init;
     }
-    return { ...JSON.parse(JSON.stringify(defaultState)), ...JSON.parse(raw) };
-  } catch (e) { return JSON.parse(JSON.stringify(defaultState)); }
+    const merged = { ...JSON.parse(JSON.stringify(defaultState)), ...JSON.parse(raw) };
+    if (Number(merged.weather.rainProb) === 85 && Number(merged.weather.temp) === 19) {
+      merged.weather.rainProb = 0;
+    }
+    return merged;
+  } catch (e) {
+    return JSON.parse(JSON.stringify(defaultState));
+  }
 }
-function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-function addDaysToDate(dStr, days) { const d = new Date(dStr + 'T00:00:00'); d.setDate(d.getDate() + Number(days || 0)); return d.toISOString().split('T')[0]; }
-function formatDateGu(dStr) { if (!dStr) return '-'; return new Date(dStr + 'T00:00:00').toLocaleDateString('gu-IN', { day: '2-digit', month: 'short', year: 'numeric' }); }
-function calcElapsedDays(sDate) { if (!sDate) return 0; const start = new Date(sDate + 'T00:00:00'); const now = new Date(); const today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); return Math.max(0, Math.floor((today - start) / 86400000)); }
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function addDaysToDate(dStr, days) {
+  const d = new Date(dStr + 'T00:00:00');
+  d.setDate(d.getDate() + Number(days || 0));
+  return d.toISOString().split('T')[0];
+}
+
+function formatDateGu(dStr) {
+  if (!dStr) return '-';
+  return new Date(dStr + 'T00:00:00').toLocaleDateString('gu-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function calcElapsedDays(sDate) {
+  if (!sDate) return 0;
+  const start = new Date(sDate + 'T00:00:00');
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  return Math.max(0, Math.floor((today - start) / 86400000));
+}
+
 function generateDefaultSchedule(cropName, variety, sowingDate) {
-  const rows = cropName === 'બટાકા' ? [
-    { day: 15, type: 'fert', item: '19:19:19 — 5 કિગ્રા/એકર', note: 'મૂળ અને પાન વિકાસ' },
-    { day: 22, type: 'spray', item: 'મેન્કોઝેબ 75% WP + સ્ટીકર', note: 'સુકારા સામે રક્ષણ' },
-    { day: 30, type: 'fert', item: '12:61:00 — 5 કિગ્રા/એકર', note: 'કંદ બેસવા માટે' },
-    { day: 50, type: 'fert', item: 'કેલ્શિયમ નાઈટ્રેટ — 5 કિગ્રા/એકર', note: 'કંદ ગુણવત્તા' },
-    { day: 65, type: 'fert', item: '00:00:50 — 6 કિગ્રા/એકર', note: 'કંદ કદ અને ડ્રાય મેટર' }
-  ] : [
-    { day: 15, type: 'fert', item: '19:19:19 — 4 કિગ્રા/એકર', note: 'શરૂઆતનો વિકાસ' },
-    { day: 30, type: 'fert', item: '12:61:00 — 4 કિગ્રા/એકર', note: 'ફૂલ-ફળ સેટિંગ' }
-  ];
-  return rows.map((r, i) => ({ id: 'sch_' + Date.now() + '_' + i, day: r.day, date: addDaysToDate(sowingDate, r.day), type: r.type, item: r.item, note: r.note, done: false, sprayedMedicine: '', sprayedDose: '', sprayedDate: '' }));
+  let rows = [];
+  if (cropName === 'બટાકા') {
+    const isSantanaOrProc = /Santana|સાન્ટાના|LR|Innovator|ચિપ્સોના/i.test(variety || '');
+    rows = [
+      { day: 14, method: 'drip', item: '19:19:19 (NPK) — 4 થી 5 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — મૂળ અને શરૂઆતના છોડના વિકાસ માટે' },
+      { day: 25, method: 'spray', item: 'મેન્કોઝેબ 75% WP + સ્ટીકર (લેબલ મુજબ છંટકાવ)', note: 'છંટકાવમાં આપવું — શરૂઆતના તબક્કામાં આગોતરા સુકારા સામે સાવચેતી' },
+      { day: 30, method: 'drip', item: '12:61:00 (MAP) — 4 થી 5 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — કંદ બેસવા અને મૂળ મજબૂત કરવા માટે' },
+      { day: 40, method: 'spray', item: 'ફૂગનાશક + જરૂર મુજબ ચૂસિયા નિયંત્રણ + સ્ટીકર', note: 'છંટકાવમાં આપવું — આગોતરા સુકારા અને રસ ચૂસતી જીવાત સામે રક્ષણ' },
+      { day: 50, method: 'drip', item: 'કેલ્શિયમ નાઈટ્રેટ — 4 થી 5 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — કંદની ગુણવત્તા અને સંગ્રહશક્તિ માટે' },
+      { day: 58, method: 'spray', item: 'સાયમોક્સાનીલ + મેન્કોઝેબ + સ્ટીકર (ભેજ/વાદળ હોય ત્યારે)', note: 'છંટકાવમાં આપવું — પાછળના તબક્કામાં ભેજવાળા વાતાવરણમાં પાછોતરા સુકારા સામે રક્ષણ' },
+      { day: 65, method: 'drip', item: isSantanaOrProc ? '00:00:50 (SOP) — 5 થી 6 કિગ્રા / એકર' : '00:52:34 (MKP) — 4 થી 5 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — સાન્ટાનામાં કંદના કદ અને ડ્રાય મેટર માટે' },
+      { day: 78, method: 'drip', item: '00:00:50 (SOP) — 4 થી 5 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — કંદ ભરાવવાના અંતિમ તબક્કા માટે' }
+    ];
+  } else if (cropName === 'મગફળી') {
+    rows = [
+      { day: 18, method: 'drip', item: '19:19:19 — 4 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — શરૂઆતનો વૃદ્ધિ વિકાસ' },
+      { day: 30, method: 'drip', item: '12:61:00 — 4 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — ફૂલ અને સૂયા બનવાની શરૂઆત' },
+      { day: 38, method: 'spray', item: 'ટીક્કા/પાનના ટપકા માટે ફૂગનાશક + સ્ટીકર', note: 'છંટકાવમાં આપવું — પાનના ડાઘ સામે રક્ષણ' },
+      { day: 55, method: 'drip', item: '00:52:34 — 4 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — દાણા ભરાવવા માટે' }
+    ];
+  } else {
+    rows = [
+      { day: 15, method: 'drip', item: '19:19:19 — 4 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — મૂળ અને પાન વિકાસ' },
+      { day: 25, method: 'spray', item: 'શરૂઆતી ફૂગનાશક + સ્ટીકર', note: 'છંટકાવમાં આપવું — શરૂઆતના રોગ સામે સાવચેતી' },
+      { day: 35, method: 'drip', item: '12:61:00 — 4 કિગ્રા / એકર', note: 'ડ્રિપથી આપવું — ફૂલ-ફળ સેટિંગ' }
+    ];
+  }
+  return rows.map((r, i) => ({
+    id: 'sch_' + Date.now() + '_' + i + '_' + Math.random().toString(36).slice(2, 5),
+    day: r.day,
+    date: addDaysToDate(sowingDate, r.day),
+    method: r.method,
+    item: r.item,
+    note: r.note,
+    done: false,
+    sprayedMedicine: '',
+    sprayedDose: '',
+    sprayedDate: ''
+  }));
 }
-function getCurrentField() { return state.fields.find(f => f.id === state.currentFieldId) || state.fields[0]; }
+
+function getCurrentField() {
+  return state.fields.find(f => f.id === state.currentFieldId) || state.fields[0];
+}
+
 function renderAll() {
   document.getElementById('headerBrandTitle').textContent = (state.brandName || 'Apple Irrigation') + ' - ખેતી સહાયક';
-  renderBroadcast(); renderWeather(); renderFieldTabs(); renderActiveField(); saveState();
+  renderBroadcast();
+  renderWeather();
+  renderFieldTabs();
+  renderActiveField();
+  saveState();
 }
+
 function renderBroadcast() {
   const wrap = document.getElementById('broadcastContainer');
-  if (!state.broadcast || !state.broadcast.active || !state.broadcast.body) { wrap.innerHTML = ''; return; }
-  wrap.innerHTML = `<div class="broadcast-banner"><div class="broadcast-title">📢 ${escapeHtml(state.broadcast.title)}</div><div style="font-size:13px;">${escapeHtml(state.broadcast.body)}</div></div>`;
+  if (!state.broadcast || !state.broadcast.active || !state.broadcast.body) {
+    wrap.innerHTML = '';
+    return;
+  }
+  wrap.innerHTML = `
+    <div class="broadcast-banner">
+      <div class="broadcast-title">📢 ${escapeHtml(state.broadcast.title)}</div>
+      <div style="font-size:13px; margin-top:3px;">${escapeHtml(state.broadcast.body)}</div>
+    </div>
+  `;
 }
+
+function getStageAccurateDiseaseAdvice(cropName, elapsedDays) {
+  if (/બટાકા/i.test(cropName)) {
+    if (elapsedDays <= 35) {
+      return `અત્યારે પાક ${elapsedDays} દિવસનો (શરૂઆતનો તબક્કો) છે. આ તબક્કામાં આગોતરો સુકારો (Early Blight) અને ભેજ/ચૂસિયાની સંભાવના વધુ રહે છે. છંટકાવમાં મેન્કોઝેબ 75% WP + સ્ટીકર વાપરવાની ભલામણ.`;
+    }
+    return `પાક ${elapsedDays} દિવસનો છે. ભેજ કે વાદળછાયું વાતાવરણ રહે તો આગોતરા તેમજ પાછોતરા સુકારા સામે સાવચેતી રાખી સાયમોક્સાનીલ + મેન્કોઝેબ + સ્ટીકરનો છંટકાવ કરવો.`;
+  }
+  return `ભેજવાળા વાતાવરણમાં ${cropName} માં ફૂગજન્ય રોગ સામે યોગ્ય દવા + સ્ટીકરનો છંટકાવ કરવો.`;
+}
+
 function renderWeather() {
   const w = state.weather;
   const field = getCurrentField();
   const cropName = field && field.crop ? field.crop.name : 'બટાકા';
-  document.getElementById('weatherLocationLabel').textContent = `📍 લોકેશન: ${w.city}`;
-  document.getElementById('weatherSummary').textContent = `તાપમાન: ${w.temp}°C | ભેજ: ${w.humidity}% | વરસાદ: ${w.rainProb}%`;
+  const elapsedDays = field && field.crop ? calcElapsedDays(field.crop.sowingDate) : 25;
+
+  document.getElementById('weatherLocationLabel').textContent = `📍 લોકેશન: ${w.placeName}`;
+  document.getElementById('weatherSummary').textContent = `તાપમાન: ${w.temp}°C | ભેજ: ${w.humidity}% | વરસાદ શક્યતા: ${w.rainProb}%`;
+  document.getElementById('weatherStationInfo').textContent = `🛰️ નજીકનું લોકેશન / સ્ટેશન: ${w.stationLabel || w.placeName} (${Number(w.lat).toFixed(2)}, ${Number(w.lon).toFixed(2)})`;
+
   const alertBox = document.getElementById('weatherAlertBox');
-  if (w.alertActive || Number(w.rainProb) >= 60 || Number(w.humidity) >= 85) {
-    alertBox.innerHTML = `<div class="weather-alert"><div class="weather-alert-title">🌧️ વરસાદી વાતાવરણ ચેતવણી (${escapeHtml(cropName)})</div><div style="font-size:13px;">${/બટાકા/i.test(cropName) ? 'બટાકામાં પાછોતરો સુકારો આવી શકે છે. મેન્કોઝેબ અથવા સાયમોક્સાનીલ + મેન્કોઝેબ + સ્ટીકર છાંટવું.' : 'વરસાદી ભેજમાં ફૂગજન્ય રોગ સામે યોગ્ય દવા + સ્ટીકર છાંટવું.'}</div></div>`;
-  } else alertBox.innerHTML = '';
+  const highRainOrHumidity = Number(w.rainProb) >= 65 || Number(w.humidity) >= 88;
+  if (highRainOrHumidity) {
+    alertBox.innerHTML = `
+      <div class="weather-alert">
+        <div class="weather-alert-title">🌧️ વરસાદી / વધુ ભેજવાળું વાતાવરણ ચેતવણી (${escapeHtml(cropName)})</div>
+        <div style="font-size:13px; color:#3e1111;">${escapeHtml(getStageAccurateDiseaseAdvice(cropName, elapsedDays))}</div>
+      </div>
+    `;
+  } else {
+    alertBox.innerHTML = '';
+  }
 }
-function selectCityWeather(val) { const [city, lat, lon] = val.split(','); state.weather.city = city; state.weather.lat = Number(lat); state.weather.lon = Number(lon); state.weather.alertActive = false; fetchLiveWeather(Number(lat), Number(lon), city); }
-function detectGPSWeather() { if (!navigator.geolocation) return; navigator.geolocation.getCurrentPosition(p => fetchLiveWeather(p.coords.latitude.toFixed(2), p.coords.longitude.toFixed(2), `GPS (${p.coords.latitude.toFixed(2)}, ${p.coords.longitude.toFixed(2)})`)); }
-async function fetchLiveWeather(lat, lon, cityName) {
+
+function selectLocalSpot(val) {
+  const [placeName, lat, lon, stationLabel] = val.split(',');
+  state.weather.placeName = placeName;
+  state.weather.lat = Number(lat);
+  state.weather.lon = Number(lon);
+  state.weather.stationLabel = stationLabel;
+  fetchLiveWeather(Number(lat), Number(lon), placeName, stationLabel);
+}
+
+function detectLocalGPS() {
+  if (!navigator.geolocation) {
+    alert('આ ડિવાઈસમાં GPS ઉપલબ્ધ નથી.');
+    return;
+  }
+  document.getElementById('weatherStationInfo').textContent = '📡 લોકલ GPS લોકેશન શોધાઈ રહ્યું છે...';
+  navigator.geolocation.getCurrentPosition(
+    async pos => {
+      const lat = Number(pos.coords.latitude.toFixed(4));
+      const lon = Number(pos.coords.longitude.toFixed(4));
+      let placeName = `લોકલ પોઈન્ટ (${lat.toFixed(2)}, ${lon.toFixed(2)})`;
+      let stationLabel = `GPS પોઈન્ટ (${lat.toFixed(2)}, ${lon.toFixed(2)})`;
+      try {
+        const geoRes = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&zoom=16&addressdetails=1`);
+        const geo = await geoRes.json();
+        const addr = geo.address || {};
+        const localPlace = addr.village || addr.hamlet || addr.suburb || addr.neighbourhood || addr.town || addr.city || '';
+        const nearArea = addr.subdistrict || addr.county || addr.state_district || '';
+        if (localPlace) {
+          placeName = localPlace;
+          stationLabel = nearArea ? `${localPlace} (${nearArea} નજીક)` : `${localPlace} લોકલ પોઈન્ટ`;
+        }
+      } catch (e) {}
+      state.weather.placeName = placeName;
+      state.weather.lat = lat;
+      state.weather.lon = lon;
+      state.weather.stationLabel = stationLabel;
+      fetchLiveWeather(lat, lon, placeName, stationLabel);
+    },
+    () => {
+      alert('GPS લોકેશનની પરવાનગી મળી નથી. નજીકનું સ્થળ પસંદ કરો.');
+      renderWeather();
+    },
+    { enableHighAccuracy: true, timeout: 10000 }
+  );
+}
+
+function refreshLiveWeather() {
+  fetchLiveWeather(state.weather.lat, state.weather.lon, state.weather.placeName, state.weather.stationLabel);
+}
+
+async function fetchLiveWeather(lat, lon, placeName, stationLabel) {
   try {
-    const r = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation_probability&timezone=auto`);
-    const d = await r.json();
-    if (d && d.current) { state.weather.temp = Math.round(d.current.temperature_2m); state.weather.humidity = Math.round(d.current.relative_humidity_2m); state.weather.rainProb = Math.round(d.current.precipitation_probability || 0); state.weather.city = cityName; }
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation_probability&timezone=auto`;
+    const res = await fetch(url);
+    const data = await res.json();
+    if (data && data.current) {
+      state.weather.temp = Math.round(data.current.temperature_2m);
+      state.weather.humidity = Math.round(data.current.relative_humidity_2m);
+      state.weather.rainProb = Math.round(data.current.precipitation_probability || 0);
+      state.weather.placeName = placeName;
+      state.weather.stationLabel = stationLabel || placeName;
+    }
   } catch (e) {}
-  renderWeather(); saveState();
+  renderWeather();
+  saveState();
 }
-function triggerRainAlertTest() { state.weather.alertActive = true; state.weather.rainProb = 85; renderWeather(); saveState(); }
-function renderFieldTabs() { document.getElementById('fieldTabs').innerHTML = state.fields.map(f => `<button class="field-chip ${f.id === getCurrentField().id ? 'active' : ''}" onclick="switchField('${f.id}')">${escapeHtml(f.name)}</button>`).join(''); }
-function switchField(id) { state.currentFieldId = id; renderAll(); }
-function openAddFieldModal() { openModal('addFieldModal'); }
+
+function setScheduleFilter(f) {
+  currentFilter = f;
+  renderActiveField();
+}
+
+function renderFieldTabs() {
+  document.getElementById('fieldTabs').innerHTML = state.fields.map(f => `
+    <button class="field-chip ${f.id === getCurrentField().id ? 'active' : ''}" onclick="switchField('${f.id}')">${escapeHtml(f.name)}</button>
+  `).join('');
+}
+
+function switchField(id) {
+  state.currentFieldId = id;
+  renderAll();
+}
+
+function openAddFieldModal() {
+  document.getElementById('newFieldName').value = '';
+  document.getElementById('newFieldArea').value = '';
+  openModal('addFieldModal');
+}
+
 function addField() {
   const name = document.getElementById('newFieldName').value.trim();
   const area = document.getElementById('newFieldArea').value.trim();
   if (!name) return;
   const today = new Date().toISOString().split('T')[0];
-  const nf = { id: 'field_' + Date.now(), name, area, crop: { name: 'બટાકા', variety: 'લોકર (Laukar)', sowingDate: today, totalDays: 100, basalFertilizer: '', schedule: generateDefaultSchedule('બટાકા', 'લોકર (Laukar)', today) } };
-  state.fields.push(nf); state.currentFieldId = nf.id; closeModal('addFieldModal'); renderAll();
+  const nf = {
+    id: 'field_' + Date.now(),
+    name,
+    area,
+    crop: {
+      name: 'બટાકા',
+      variety: 'સાન્ટાના (Santana)',
+      sowingDate: today,
+      totalDays: 105,
+      basalFertilizer: '',
+      schedule: generateDefaultSchedule('બટાકા', 'સાન્ટાના (Santana)', today)
+    }
+  };
+  state.fields.push(nf);
+  state.currentFieldId = nf.id;
+  closeModal('addFieldModal');
+  renderAll();
 }
+
 function renderActiveField() {
-  const field = getCurrentField(); const crop = field.crop; const elapsed = calcElapsedDays(crop.sowingDate); const total = Number(crop.totalDays || 105);
-  const sch = (crop.schedule || []).slice().sort((a, b) => a.day - b.day).map(item => `
-    <div class="schedule-item ${item.done ? 'done' : ''}">
-      <div class="between">
-        <div><span class="badge ${item.type === 'fert' ? 'badge-fert' : 'badge-spray'}">${item.day}મો દિવસ • ${formatDateGu(item.date || addDaysToDate(crop.sowingDate, item.day))}</span> ${item.done ? '<span class="badge badge-done">✅ પૂર્ણ</span>' : ''}</div>
-        <button class="btn btn-primary btn-sm" onclick="openSprayLogModal('${item.id}')">🧪 દવા નોંધો</button>
+  const field = getCurrentField();
+  const crop = field.crop;
+  const elapsed = calcElapsedDays(crop.sowingDate);
+  const total = Number(crop.totalDays || 105);
+
+  const filtered = (crop.schedule || [])
+    .slice()
+    .sort((a, b) => a.day - b.day)
+    .filter(item => currentFilter === 'all' ? true : item.method === currentFilter);
+
+  const schHtml = filtered.map(item => {
+    const isDrip = item.method === 'drip';
+    return `
+      <div class="schedule-item ${item.done ? 'done' : ''}">
+        <div class="between">
+          <div>
+            <span class="day-tag">${item.day}મો દિવસ • ${formatDateGu(item.date || addDaysToDate(crop.sowingDate, item.day))}</span>
+            <span class="method-tag ${isDrip ? 'method-drip' : 'method-spray'}">
+              ${isDrip ? '💧 ડ્રિપથી આપવું' : '🧴 છંટકાવમાં આપવું'}
+            </span>
+            ${item.done ? '<span class="done-tag">✅ પૂર્ણ</span>' : ''}
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="openSprayLogModal('${item.id}')">🧪 નોંધ કરો</button>
+        </div>
+        <div style="font-weight:800; font-size:14px; margin-top:7px;">${escapeHtml(item.item)}</div>
+        ${item.note ? `<div style="font-size:12px; color:var(--muted); margin-top:3px;">${escapeHtml(item.note)}</div>` : ''}
+        ${item.sprayedMedicine ? `<div class="sprayed-note">નોંધાયેલ: ${escapeHtml(item.sprayedMedicine)} ${item.sprayedDose ? `| ${escapeHtml(item.sprayedDose)}` : ''}</div>` : ''}
       </div>
-      <div style="font-weight:700; margin-top:6px;">${escapeHtml(item.item)}</div>
-      ${item.sprayedMedicine ? `<div class="sprayed-note">છાંટેલ: ${escapeHtml(item.sprayedMedicine)} ${item.sprayedDose ? `(${escapeHtml(item.sprayedDose)})` : ''}</div>` : ''}
-    </div>`).join('');
+    `;
+  }).join('');
+
   document.getElementById('activeFieldContent').innerHTML = `
     <div class="card">
       <div class="between">
-        <div><div style="font-weight:800; color:var(--primary);">🌱 ${escapeHtml(crop.name)} ${crop.variety ? `— ${escapeHtml(crop.variety)}` : ''}</div><div style="font-size:12px; color:var(--muted);">${escapeHtml(field.name)} • વાવેતર: ${formatDateGu(crop.sowingDate)}</div></div>
-        <button class="btn btn-outline btn-sm" onclick="openAddCropModal()">✏️ બદલો</button>
+        <div>
+          <div style="font-weight:800; font-size:16px; color:var(--primary);">
+            🌱 ${escapeHtml(crop.name)} ${crop.variety ? `— <span style="color:#c62828;">${escapeHtml(crop.variety)}</span>` : ''}
+          </div>
+          <div style="font-size:12px; color:var(--muted); margin-top:2px;">
+            ${escapeHtml(field.name)} ${field.area ? `(${escapeHtml(field.area)})` : ''} • વાવેતર: ${formatDateGu(crop.sowingDate)}
+          </div>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="openAddCropModal()">✏️ પાક / વેરાયટી બદલો</button>
       </div>
       <div class="stats-grid">
         <div class="stat-box"><div class="stat-val">${elapsed} દિવસ</div><div class="stat-lbl">થયેલ દિવસ</div></div>
@@ -475,77 +728,199 @@ function renderActiveField() {
       </div>
       <div style="font-size:12px;"><strong>પાયાનું ખાતર:</strong> ${escapeHtml(crop.basalFertilizer || 'નોંધાયેલ નથી')}</div>
     </div>
-    <div class="card"><div style="font-weight:800; margin-bottom:8px;">📅 શિડ્યુલ</div>${sch}</div>`;
+
+    <div class="card">
+      <div class="between" style="margin-bottom:8px;">
+        <div style="font-weight:800; font-size:15px;">📅 ખાતર અને દવાનું શિડ્યુલ</div>
+        <button class="btn btn-primary btn-sm" onclick="openCustomEntryModal()">➕ ઉમેરો</button>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn ${currentFilter === 'all' ? 'active' : ''}" onclick="setScheduleFilter('all')">બધું</button>
+        <button class="filter-btn ${currentFilter === 'drip' ? 'active' : ''}" onclick="setScheduleFilter('drip')">💧 ડ્રિપથી આપવું</button>
+        <button class="filter-btn ${currentFilter === 'spray' ? 'active' : ''}" onclick="setScheduleFilter('spray')">🧴 છંટકાવમાં આપવું</button>
+      </div>
+      ${schHtml || '<div style="font-size:13px; color:var(--muted);">આ ફિલ્ટર માટે કોઈ એન્ટ્રી નથી.</div>'}
+    </div>
+  `;
 }
-function openAddCropModal() { const c = getCurrentField().crop; document.getElementById('sowingDateInput').value = c.sowingDate; document.getElementById('cropDaysInput').value = c.totalDays || 105; document.getElementById('basalFertInput').value = c.basalFertilizer || ''; handleCropSelectionChange(); openModal('addCropModal'); }
-function handleCropSelectionChange() { const v = document.getElementById('cropNameSelect').value; document.getElementById('potatoVarietyWrap').style.display = v === 'બટાકા' ? 'block' : 'none'; document.getElementById('customCropNameWrap').style.display = v === 'અન્ય' ? 'block' : 'none'; }
-function handlePotatoVarietyChange() { document.getElementById('customVarietyWrap').style.display = document.getElementById('potatoVarietySelect').value === 'અન્ય વેરાયટી' ? 'block' : 'none'; }
+
+function openAddCropModal() {
+  const c = getCurrentField().crop;
+  document.getElementById('sowingDateInput').value = c.sowingDate;
+  document.getElementById('cropDaysInput').value = c.totalDays || 105;
+  document.getElementById('basalFertInput').value = c.basalFertilizer || '';
+  handleCropSelectionChange();
+  openModal('addCropModal');
+}
+
+function handleCropSelectionChange() {
+  const v = document.getElementById('cropNameSelect').value;
+  document.getElementById('potatoVarietyWrap').style.display = v === 'બટાકા' ? 'block' : 'none';
+  document.getElementById('customCropNameWrap').style.display = v === 'અન્ય' ? 'block' : 'none';
+}
+
+function handlePotatoVarietyChange() {
+  document.getElementById('customVarietyWrap').style.display = document.getElementById('potatoVarietySelect').value === 'અન્ય વેરાયટી' ? 'block' : 'none';
+}
+
 function saveCropPlan() {
   const sCrop = document.getElementById('cropNameSelect').value;
   const cropName = sCrop === 'અન્ય' ? (document.getElementById('customCropName').value.trim() || 'પાક') : sCrop;
-  const variety = cropName === 'બટાકા' ? (document.getElementById('potatoVarietySelect').value === 'અન્ય વેરાયટી' ? document.getElementById('customVarietyName').value.trim() : document.getElementById('potatoVarietySelect').value) : '';
+  const variety = cropName === 'બટાકા'
+    ? (document.getElementById('potatoVarietySelect').value === 'અન્ય વેરાયટી'
+      ? document.getElementById('customVarietyName').value.trim()
+      : document.getElementById('potatoVarietySelect').value)
+    : '';
   const sowingDate = document.getElementById('sowingDateInput').value;
   const totalDays = Number(document.getElementById('cropDaysInput').value || 105);
   const basalFertilizer = document.getElementById('basalFertInput').value.trim();
   const mode = document.getElementById('scheduleModeSelect').value;
-  getCurrentField().crop = { name: cropName, variety, sowingDate, totalDays, basalFertilizer, schedule: mode === 'default' ? generateDefaultSchedule(cropName, variety, sowingDate) : [] };
-  closeModal('addCropModal'); renderAll();
+  getCurrentField().crop = {
+    name: cropName,
+    variety,
+    sowingDate,
+    totalDays,
+    basalFertilizer,
+    schedule: mode === 'default' ? generateDefaultSchedule(cropName, variety, sowingDate) : []
+  };
+  closeModal('addCropModal');
+  renderAll();
 }
-function openCustomEntryModal() { openModal('customEntryModal'); }
+
+function openCustomEntryModal() {
+  document.getElementById('newEntryDay').value = '';
+  document.getElementById('newEntryItem').value = '';
+  document.getElementById('newEntryNote').value = '';
+  openModal('customEntryModal');
+}
+
 function addCustomScheduleItem() {
-  const type = document.getElementById('newEntryType').value; const day = Number(document.getElementById('newEntryDay').value); const item = document.getElementById('newEntryItem').value.trim(); const note = document.getElementById('newEntryNote').value.trim();
+  const method = document.getElementById('newEntryMethod').value;
+  const day = Number(document.getElementById('newEntryDay').value);
+  const item = document.getElementById('newEntryItem').value.trim();
+  const note = document.getElementById('newEntryNote').value.trim();
   if (!item) return;
   const f = getCurrentField();
-  f.crop.schedule.push({ id: 'sch_' + Date.now(), day, date: addDaysToDate(f.crop.sowingDate, day), type, item, note, done: false, sprayedMedicine: '', sprayedDose: '', sprayedDate: '' });
-  closeModal('customEntryModal'); renderAll();
+  f.crop.schedule.push({
+    id: 'sch_' + Date.now(),
+    day,
+    date: addDaysToDate(f.crop.sowingDate, day),
+    method,
+    item,
+    note,
+    done: false,
+    sprayedMedicine: '',
+    sprayedDose: '',
+    sprayedDate: ''
+  });
+  closeModal('customEntryModal');
+  renderAll();
 }
-function openSprayLogModal(id) { activeSprayItemId = id; const item = getCurrentField().crop.schedule.find(x => x.id === id); document.getElementById('sprayTargetLabel').textContent = item ? `${item.day}મો દિવસ: ${item.item}` : ''; document.getElementById('sprayedMedicineName').value = item?.sprayedMedicine || ''; document.getElementById('sprayedDose').value = item?.sprayedDose || ''; document.getElementById('sprayedDate').value = item?.sprayedDate || new Date().toISOString().split('T')[0]; openModal('sprayLogModal'); }
+
+function openSprayLogModal(id) {
+  activeSprayItemId = id;
+  const item = getCurrentField().crop.schedule.find(x => x.id === id);
+  document.getElementById('sprayTargetLabel').textContent = item ? `${item.day}મો દિવસ (${item.method === 'drip' ? 'ડ્રિપ' : 'છંટકાવ'}): ${item.item}` : '';
+  document.getElementById('sprayedMedicineName').value = item?.sprayedMedicine || '';
+  document.getElementById('sprayedDose').value = item?.sprayedDose || '';
+  document.getElementById('sprayedDate').value = item?.sprayedDate || new Date().toISOString().split('T')[0];
+  openModal('sprayLogModal');
+}
+
 function saveSprayedLog() {
-  const med = document.getElementById('sprayedMedicineName').value.trim(); if (!med) return;
+  const med = document.getElementById('sprayedMedicineName').value.trim();
+  if (!med) return;
   const item = getCurrentField().crop.schedule.find(x => x.id === activeSprayItemId);
-  if (item) { item.sprayedMedicine = med; item.sprayedDose = document.getElementById('sprayedDose').value.trim(); item.sprayedDate = document.getElementById('sprayedDate').value; item.done = true; }
-  closeModal('sprayLogModal'); renderAll();
+  if (item) {
+    item.sprayedMedicine = med;
+    item.sprayedDose = document.getElementById('sprayedDose').value.trim();
+    item.sprayedDate = document.getElementById('sprayedDate').value;
+    item.done = true;
+  }
+  closeModal('sprayLogModal');
+  renderAll();
 }
+
 function shareWhatsAppSchedule() {
-  const f = getCurrentField(); const c = f.crop;
-  const lines = [`*${state.brandName} — ${c.name} (${c.variety || ''})*`, `ખેતર: ${f.name} • વાવેતર: ${formatDateGu(c.sowingDate)} (${calcElapsedDays(c.sowingDate)} દિવસ)`, ...(c.schedule || []).map(s => `${s.done ? '✅' : '▫️'} ${s.day}મો દિવસ: ${s.item}${s.sprayedMedicine ? ` [છાંટેલ: ${s.sprayedMedicine}]` : ''}`)];
+  const f = getCurrentField();
+  const c = f.crop;
+  const lines = [
+    `*${state.brandName} — ${c.name} (${c.variety || ''})*`,
+    `ખેતર: ${f.name} • વાવેતર: ${formatDateGu(c.sowingDate)} (${calcElapsedDays(c.sowingDate)} દિવસ)`,
+    ...(c.schedule || []).map(s => `${s.done ? '✅' : '▫️'} ${s.day}મો દિવસ [${s.method === 'drip' ? 'ડ્રિપ' : 'છંટકાવ'}]: ${s.item}${s.sprayedMedicine ? ` [નોંધ: ${s.sprayedMedicine}]` : ''}`)
+  ];
   window.open('https://wa.me/?text=' + encodeURIComponent(lines.join('\n')), '_blank');
 }
+
 function openFarmerRegModal() { openModal('farmerRegModal'); }
 function saveFarmerRegistration() {
-  const name = document.getElementById('regName').value.trim(); const phone = document.getElementById('regPhone').value.trim(); const village = document.getElementById('regVillage').value.trim(); const crop = document.getElementById('regCrop').value.trim();
+  const name = document.getElementById('regName').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const village = document.getElementById('regVillage').value.trim();
+  const crop = document.getElementById('regCrop').value.trim();
   if (!name || !phone || !village) return;
   const entry = { name, phone, village, crop, registeredAt: new Date().toISOString().split('T')[0] };
   state.farmerProfile = entry;
   const idx = state.farmersRegistry.findIndex(x => x.phone === phone);
   if (idx >= 0) state.farmersRegistry[idx] = entry; else state.farmersRegistry.push(entry);
-  saveState(); closeModal('farmerRegModal'); alert('વિગત સેવ થઈ ગઈ!');
+  saveState();
+  closeModal('farmerRegModal');
+  alert('વિગત સેવ થઈ ગઈ!');
 }
-function saveSettings() { state.brandName = document.getElementById('setBrandName').value.trim() || 'Apple Irrigation'; state.brandPhone = document.getElementById('setBrandPhone').value.trim(); closeModal('settingsModal'); renderAll(); }
-function verifyAdminPin() { if (document.getElementById('adminPinInput').value.trim() !== '1234') { alert('PIN 1234 છે.'); return; } document.getElementById('adminPinInput').value = ''; closeModal('adminPinModal'); renderAdminPanel(); openModal('adminPanelModal'); }
+
+function saveSettings() {
+  state.brandName = document.getElementById('setBrandName').value.trim() || 'Apple Irrigation';
+  state.brandPhone = document.getElementById('setBrandPhone').value.trim();
+  closeModal('settingsModal');
+  renderAll();
+}
+
+function verifyAdminPin() {
+  if (document.getElementById('adminPinInput').value.trim() !== '1234') {
+    alert('PIN 1234 છે.');
+    return;
+  }
+  document.getElementById('adminPinInput').value = '';
+  closeModal('adminPinModal');
+  renderAdminPanel();
+  openModal('adminPanelModal');
+}
+
 function publishBroadcast() {
-  const title = document.getElementById('bcastTitle').value.trim(); const body = document.getElementById('bcastBody').value.trim(); if (!title || !body) return;
+  const title = document.getElementById('bcastTitle').value.trim();
+  const body = document.getElementById('bcastBody').value.trim();
+  if (!title || !body) return;
   state.broadcast = { active: true, type: document.getElementById('bcastType').value, title, body, date: new Date().toLocaleDateString('gu-IN') };
-  saveState(); renderBroadcast(); alert('મેસેજ પ્રકાશિત થયો!');
+  saveState();
+  renderBroadcast();
+  alert('મેસેજ પ્રકાશિત થયો!');
 }
+
 function renderAdminPanel() {
   const list = state.farmersRegistry || [];
   document.getElementById('farmerCountSummary').textContent = `કુલ ખેડૂતો: ${list.length}`;
-  document.getElementById('farmersTableBody').innerHTML = list.length ? list.map(f => `<tr><td>${escapeHtml(f.name)}</td><td>${escapeHtml(f.phone)}</td><td>${escapeHtml(f.village)}</td><td>${escapeHtml(f.crop || '-')}</td><td><a class="btn btn-wa btn-sm" style="text-decoration:none;" target="_blank" href="https://wa.me/91${f.phone.replace(/\D/g,'').slice(-10)}">WA</a></td></tr>`).join('') : '<tr><td colspan="5">કોઈ ડેટા નથી</td></tr>';
+  document.getElementById('farmersTableBody').innerHTML = list.length
+    ? list.map(f => `<tr><td>${escapeHtml(f.name)}</td><td>${escapeHtml(f.phone)}</td><td>${escapeHtml(f.village)}</td><td>${escapeHtml(f.crop || '-')}</td><td><a class="btn btn-wa btn-sm" style="text-decoration:none;" target="_blank" href="https://wa.me/91${f.phone.replace(/\D/g,'').slice(-10)}">WA</a></td></tr>`).join('')
+    : '<tr><td colspan="5">કોઈ ડેટા નથી</td></tr>';
 }
+
 function downloadFarmersCSV() {
-  const header = ['નામ', 'મોબાઈલ', 'ગામ', 'પાક', 'તારીખ'];
+  const header = ['નામ', 'મોબાઈલ', 'ગામ / સ્થળ', 'પાક', 'તારીખ'];
   const rows = (state.farmersRegistry || []).map(f => [f.name, f.phone, f.village, f.crop || '', f.registeredAt || '']);
   const csv = '\uFEFF' + [header, ...rows].map(r => r.map(c => `"${String(c || '').replace(/"/g, '""')}"`).join(',')).join('\n');
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Apple_Irrigation_Farmers.csv'; a.click();
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'Apple_Irrigation_Farmers.csv';
+  a.click();
 }
+
 function openModal(id) { document.getElementById(id).classList.add('open'); }
 function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 function escapeHtml(s) { return String(s || '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m])); }
 
 renderAll();
-fetchLiveWeather(state.weather.lat, state.weather.lon, state.weather.city);
+fetchLiveWeather(state.weather.lat, state.weather.lon, state.weather.placeName, state.weather.stationLabel);
 </script>
 </body>
 </html>
